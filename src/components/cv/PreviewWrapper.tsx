@@ -14,7 +14,11 @@ export default function PreviewWrapper({ children }: PreviewWrapperProps) {
       if (!containerRef.current) return;
       const containerWidth = containerRef.current.clientWidth;
       const cvWidth = 794; // A4 width in px at 96 DPI
-      const padding = 64;
+
+      // Sur petit écran (mobile), on utilise presque toute la largeur
+      // Sur grand écran, on garde de l'espace autour
+      const isMobile = window.innerWidth < 1024;
+      const padding = isMobile ? 8 : 64;
       const availableWidth = containerWidth - padding;
 
       if (availableWidth < cvWidth) {
@@ -33,7 +37,7 @@ export default function PreviewWrapper({ children }: PreviewWrapperProps) {
     <div
       id="cv-preview"
       ref={containerRef}
-      className="w-full flex items-start justify-center p-4 min-h-full"
+      className="w-full flex items-start justify-center p-1 lg:p-4 min-h-full"
     >
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}

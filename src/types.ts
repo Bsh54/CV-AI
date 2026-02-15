@@ -65,4 +65,8 @@ export interface CVData {
     references: Reference[];
     strategicPitch?: string;
     isOptimized?: boolean;
+    sectionsOrder?: {
+        sidebar: string[];
+        main: string[];
+    };
 }
