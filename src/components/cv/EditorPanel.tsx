@@ -80,11 +80,28 @@ export default function EditorPanel({ data, onChange }: EditorPanelProps) {
           logging: false,
           backgroundColor: "#ffffff",
           onclone: (clonedDoc: Document) => {
-            // 1. Fix OKLCH pour éviter le crash
-            const styles = clonedDoc.querySelectorAll("style");
-            styles.forEach(s => {
-              s.innerHTML = s.innerHTML.replace(/oklch\([^)]+\)/g, "#1e293b");
-            });
+            // 1. FIX OKLCH PROFOND : html2canvas ne supporte pas oklch()
+            // On parcourt toutes les feuilles de style et on remplace oklch par une couleur hex/rgb
+            try {
+              const styles = clonedDoc.querySelectorAll("style");
+              styles.forEach(s => {
+                s.innerHTML = s.innerHTML.replace(/oklch\([^)]+\)/g, "#1e293b");
+              });
+
+              // On nettoie aussi les styles inline qui pourraient contenir oklch
+              clonedDoc.querySelectorAll("*").forEach(el => {
+                const element = el as HTMLElement;
+                if (element.style) {
+                  const computedStyle = window.getComputedStyle(element);
+                  // Si une couleur calculée contient oklch, on la force en slate
+                  if (computedStyle.color.includes("oklch")) element.style.color = "#1e293b";
+                  if (computedStyle.backgroundColor.includes("oklch")) element.style.backgroundColor = "#ffffff";
+                  if (computedStyle.borderColor.includes("oklch")) element.style.borderColor = "#1e293b";
+                }
+              });
+            } catch (err) {
+              console.warn("Style cleanup warning:", err);
+            }
 
             const clonedElement = clonedDoc.querySelector(".pdf-export-mode") as HTMLElement;
             if (clonedElement) {
