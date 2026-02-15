@@ -4,7 +4,7 @@ CV-AI est une application moderne conçue pour transformer la création de CV. C
 
 ## 🚀 Fonctionnalités Clés
 
-- **Optimisation Stratégique par IA** : Intégration de l'API DeepSeek pour réécrire votre résumé, vos expériences et vos compétences en fonction des mots-clés d'une offre d'emploi.
+- **Optimisation Stratégique par IA** : Utilisation d'un moteur d'intelligence artificielle avancé pour réécrire votre résumé, vos expériences et vos compétences en fonction des mots-clés d'une offre d'emploi.
 - **Rendu Haute Fidélité** : Moteur d'exportation PDF personnalisé garantissant que le document téléchargé est le miroir exact de la prévisualisation web.
 - **Zéro Débordement** : Algorithme de verrouillage A4 garantissant un CV sur une seule page, sans sauts de page parasites.
 - **Confidentialité Totale** : Gestion des données en RAM (mémoire vive). Aucune information personnelle n'est stockée de manière persistante sur un serveur.
@@ -15,7 +15,7 @@ CV-AI est une application moderne conçue pour transformer la création de CV. C
 - **Frontend** : React 19, TypeScript, Vite
 - **Style** : Tailwind CSS 4, Framer Motion (animations)
 - **UI Components** : Radix UI, Lucide React
-- **IA** : DeepSeek API (via Hugging Face)
+- **IA** : Intégration d'un modèle de langage de pointe (LLM) via API
 - **Export** : html2pdf.js avec moteur de conversion OKLCH vers HEX haute définition
 
 ## 📦 Installation et Lancement
