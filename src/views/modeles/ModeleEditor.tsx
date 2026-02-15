@@ -87,7 +87,6 @@ export default function ModeleEditor() {
         <div className="w-full lg:w-[450px] bg-white border-r shadow-lg overflow-y-auto p-6 scrollbar-hide">
           <div className="mb-8 text-center border-b pb-4">
             <h1 className="text-2xl font-black text-gray-800 uppercase leading-none mb-1">Votre CV</h1>
-            <p className="text-[10px] font-black text-[#00a99d] tracking-[0.2em] uppercase">Démo IA Active</p>
           </div>
           <EditorPanel data={cvData} onChange={setCvData} />
         </div>

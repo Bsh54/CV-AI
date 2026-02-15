@@ -22,7 +22,7 @@ export default function Optimize() {
     if (data) {
       setCvData(data);
     } else {
-      toast.error("Données de démo introuvables.");
+      toast.error("Données introuvables.");
       navigate("/modeles");
     }
   }, [navigate]);
@@ -69,7 +69,7 @@ export default function Optimize() {
               <Sparkles className="w-6 h-6" />
             </div>
             <h1 className="text-2xl font-bold">Optimisation par IA</h1>
-            <p className="text-gray-500">Adaptez le CV de Noel Taylor à votre cible.</p>
+            <p className="text-gray-500">Adaptez votre CV à votre cible.</p>
           </div>
 
           <div className="space-y-4">

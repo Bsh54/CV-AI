@@ -15,7 +15,7 @@ export default function Home() {
         </p>
         <Link to="/modeles">
           <button className="px-10 py-5 bg-[#00a99d] text-white font-bold rounded-xl hover:bg-[#008c82] transition-all text-xl shadow-lg">
-            DÉMARRER LA DÉMO
+            CRÉER MON CV
           </button>
         </Link>
       </main>
