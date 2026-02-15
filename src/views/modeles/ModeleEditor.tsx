@@ -90,7 +90,7 @@ export default function ModeleEditor() {
           </div>
           <EditorPanel data={cvData} onChange={setCvData} />
         </div>
-        <div className="flex-1 bg-gray-200 overflow-y-auto p-4 md:p-12 flex justify-center">
+        <div className="hidden lg:flex flex-1 bg-gray-200 overflow-y-auto p-4 md:p-12 justify-center">
           <div className="w-full max-w-[850px]">
             <PreviewWrapper>
               <Template data={cvData} />
