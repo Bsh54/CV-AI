@@ -39,7 +39,6 @@ export default function Optimize() {
     try {
       const optimized = await optimizeCVWithAI({
         jobOffer,
-        companyInfo,
         currentData: cvData
       });
 

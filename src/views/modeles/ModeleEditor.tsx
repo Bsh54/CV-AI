@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import type { CVData } from "@/types";
 import Navbar from "@/components/navbar";
@@ -6,14 +6,10 @@ import { cvModels } from "@/data/cvModels";
 import EditorPanel from "@/components/cv/EditorPanel";
 import PreviewWrapper from "@/components/cv/PreviewWrapper";
 import { getDemoData, setDemoData } from "@/lib/store";
-import { X, Eye } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 export default function ModeleEditor() {
   const { modelId } = useParams();
-  const navigate = useNavigate();
   const model = modelId ? cvModels[modelId] : null;
-  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
 
   const getDefaultData = (): CVData => ({
     fullName: "NOEL TAYLOR",

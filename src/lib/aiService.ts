@@ -3,7 +3,7 @@ import type { CVData } from "../types";
 const AI_API_URL = import.meta.env.VITE_AI_API_URL;
 const AI_API_KEY = import.meta.env.VITE_AI_API_KEY;
 
-export async function optimizeCVWithAI({ jobOffer, companyInfo, currentData }: { jobOffer: string; companyInfo: string; currentData: CVData }): Promise<CVData> {
+export async function optimizeCVWithAI({ jobOffer, currentData }: { jobOffer: string; currentData: CVData }): Promise<CVData> {
   const prompt = `
     Rôle : Expert en recrutement stratégique.
     Tâche : Optimise intégralement ce CV pour l'offre fournie.

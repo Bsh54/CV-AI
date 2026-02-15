@@ -1,11 +1,9 @@
 import type { CVData } from "@/types";
-import { formatDateRange } from "@/lib/utils";
 import { PdfSafeWrapper } from "@/components/cv/PdfSafeWrapper";
 import {
   Mail,
   Phone,
   MapPin,
-  Zap,
   User,
   Briefcase,
   GraduationCap,

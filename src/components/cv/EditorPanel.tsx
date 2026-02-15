@@ -6,7 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Trash2, Plus, Sparkles, Download, Printer, Loader2, ImageIcon, X } from "lucide-react";
+import { Trash2, Sparkles, Download, Printer, Loader2, ImageIcon, X } from "lucide-react";
 import type { CVData } from "@/types";
 import { useNavigate } from "react-router-dom";
 import { useState, useRef } from "react";
@@ -102,8 +102,9 @@ export default function EditorPanel({ data, onChange }: EditorPanelProps) {
                 svg.setAttribute("stroke", color);
                 svg.style.stroke = color;
                 svg.querySelectorAll("path, circle, line, polyline, rect").forEach(path => {
-                  path.setAttribute("stroke", color);
-                  path.style.stroke = color;
+                  const p = path as SVGElement;
+                  p.setAttribute("stroke", color);
+                  p.style.stroke = color;
                 });
               });
 
