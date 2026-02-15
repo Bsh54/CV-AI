@@ -27,3 +27,6 @@ dist-ssr
 *.sw?
 
 src/assets/images/video.mp4
+
+# Claude Code
+.claude/
