@@ -1,7 +1,7 @@
 import type { CVData } from "../types";
 
-const DEEPSEEK_API_URL = "https://shads229-personnal-ai.hf.space/v1/chat/completions";
-const DEEPSEEK_API_KEY = "Shadobsh";
+const AI_API_URL = import.meta.env.VITE_AI_API_URL;
+const AI_API_KEY = import.meta.env.VITE_AI_API_KEY;
 
 export async function optimizeCVWithAI({ jobOffer, companyInfo, currentData }: { jobOffer: string; companyInfo: string; currentData: CVData }): Promise<CVData> {
   const prompt = `
@@ -29,9 +29,9 @@ export async function optimizeCVWithAI({ jobOffer, companyInfo, currentData }: {
   `;
 
   try {
-    const response = await fetch(DEEPSEEK_API_URL, {
+    const response = await fetch(AI_API_URL, {
       method: "POST",
-      headers: { "Content-Type": "application/json", "Authorization": `Bearer ${DEEPSEEK_API_KEY}` },
+      headers: { "Content-Type": "application/json", "Authorization": `Bearer ${AI_API_KEY}` },
       body: JSON.stringify({
         model: "deepseek-chat",
         messages: [

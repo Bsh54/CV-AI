@@ -1,24 +1,15 @@
-# CV-AI : Générateur de CV Stratégique Propulsé par l'IA
+# CV-AI
 
-CV-AI est une application moderne conçue pour transformer la création de CV. Contrairement aux éditeurs classiques, il utilise l'intelligence artificielle pour adapter dynamiquement votre profil à des offres d'emploi spécifiques, tout en garantissant un rendu PDF professionnel "Pixel Perfect" sur une seule page.
+CV-AI est un outil de création de CV qui aide à adapter son profil à des offres d'emploi précises. L'application utilise l'intelligence artificielle pour suggérer des ajustements de contenu et propose un export PDF au format A4.
 
-## 🚀 Fonctionnalités Clés
+## Fonctions principales
 
-- **Optimisation Stratégique par IA** : Utilisation d'un moteur d'intelligence artificielle avancé pour réécrire votre résumé, vos expériences et vos compétences en fonction des mots-clés d'une offre d'emploi.
-- **Rendu Haute Fidélité** : Moteur d'exportation PDF personnalisé garantissant que le document téléchargé est le miroir exact de la prévisualisation web.
-- **Zéro Débordement** : Algorithme de verrouillage A4 garantissant un CV sur une seule page, sans sauts de page parasites.
-- **Confidentialité Totale** : Gestion des données en RAM (mémoire vive). Aucune information personnelle n'est stockée de manière persistante sur un serveur.
-- **Design Moderne** : Construit avec Tailwind CSS 4 et Radix UI pour une interface fluide, réactive et élégante.
+- **Adaptation du contenu** : Analyse une offre d'emploi pour proposer des modifications sur le résumé et les expériences.
+- **Export PDF** : Génère un document prêt à l'emploi qui respecte la mise en page affichée à l'écran.
+- **Page unique** : Le système est configuré pour que le CV tienne sur une seule page A4.
+- **Respect de la vie privée** : Les données sont gérées localement dans le navigateur et ne sont pas enregistrées sur un serveur.
 
-## 🛠️ Stack Technique
-
-- **Frontend** : React 19, TypeScript, Vite
-- **Style** : Tailwind CSS 4, Framer Motion (animations)
-- **UI Components** : Radix UI, Lucide React
-- **IA** : Intégration d'un modèle de langage de pointe (LLM) via API
-- **Export** : html2pdf.js avec moteur de conversion OKLCH vers HEX haute définition
-
-## 📦 Installation et Lancement
+## Installation
 
 1. **Cloner le projet** :
    ```bash
@@ -31,22 +22,21 @@ CV-AI est une application moderne conçue pour transformer la création de CV. C
    npm install
    ```
 
-3. **Lancer en mode développement** :
+3. **Variables d'environnement** :
+   Créez un fichier `.env` à la racine et ajoutez vos accès API :
+   ```env
+   VITE_AI_API_URL=votre_url
+   VITE_AI_API_KEY=votre_cle
+   ```
+
+4. **Lancer le projet** :
    ```bash
    npm run dev
    ```
 
-4. **Compiler pour la production** :
-   ```bash
-   npm run build
-   ```
+## Technologies utilisées
 
-## 💡 Utilisation
-
-1. **Édition** : Remplissez vos informations de base dans l'éditeur intuitif.
-2. **Ciblage** : Collez l'offre d'emploi que vous visez dans la section "Optimiser".
-3. **Magie** : L'IA adapte votre profil pour maximiser vos chances de passer les filtres ATS.
-4. **Export** : Téléchargez votre CV en PDF haute définition d'un simple clic.
-
----
-Développé avec une exigence de précision visuelle et stratégique.
+- React 19 et TypeScript
+- Tailwind CSS 4
+- Lucide React (icônes)
+- html2pdf.js
