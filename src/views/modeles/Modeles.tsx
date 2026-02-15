@@ -1,7 +1,7 @@
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { useNavigate } from "react-router-dom";
-import moderne01 from "@/assets/images/cv-templates/moderne/moderne-1.jpg";
+import moderne01 from "@/assets/images/cv-templates/Moderne/moderne-1.jpg";
 
 export default function Modeles() {
   const navigate = useNavigate();
