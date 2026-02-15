@@ -6,11 +6,14 @@ import { cvModels } from "@/data/cvModels";
 import EditorPanel from "@/components/cv/EditorPanel";
 import PreviewWrapper from "@/components/cv/PreviewWrapper";
 import { getDemoData, setDemoData } from "@/lib/store";
+import { X, Eye } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function ModeleEditor() {
   const { modelId } = useParams();
   const navigate = useNavigate();
   const model = modelId ? cvModels[modelId] : null;
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
 
   const getDefaultData = (): CVData => ({
     fullName: "NOEL TAYLOR",
@@ -89,7 +92,22 @@ export default function ModeleEditor() {
             <h1 className="text-2xl font-black text-gray-800 uppercase leading-none mb-1">Votre CV</h1>
           </div>
           <EditorPanel data={cvData} onChange={setCvData} />
+
+          {/* Bouton d'aperçu flottant sur mobile (uniquement si optimisé) */}
+          {cvData.isOptimized && (
+            <div className="lg:hidden fixed bottom-6 right-6 z-50">
+              <Button
+                onClick={() => setIsPreviewOpen(true)}
+                className="rounded-full h-16 w-16 shadow-2xl bg-[#00a99d] hover:bg-[#008c82] text-white flex flex-col items-center justify-center p-0"
+              >
+                <Eye className="w-6 h-6 mb-0.5" />
+                <span className="text-[8px] font-bold uppercase">Aperçu</span>
+              </Button>
+            </div>
+          )}
         </div>
+
+        {/* Prévisualisation Desktop (inchangée) */}
         <div className="hidden lg:flex flex-1 bg-gray-200 overflow-y-auto p-4 md:p-12 justify-center">
           <div className="w-full max-w-[850px]">
             <PreviewWrapper>
@@ -98,6 +116,36 @@ export default function ModeleEditor() {
           </div>
         </div>
       </main>
+
+      {/* MODAL D'APERÇU PLEIN ÉCRAN POUR MOBILE */}
+      {isPreviewOpen && (
+        <div className="fixed inset-0 z-[100] bg-gray-900/95 flex flex-col lg:hidden">
+          <div className="flex items-center justify-between p-4 bg-white border-b">
+            <h2 className="font-black text-sm uppercase tracking-tighter text-black">Aperçu de votre CV</h2>
+            <button
+              onClick={() => setIsPreviewOpen(false)}
+              className="p-2 rounded-full hover:bg-gray-100 text-black"
+            >
+              <X className="w-6 h-6" />
+            </button>
+          </div>
+          <div className="flex-1 overflow-auto p-4 flex justify-center bg-gray-200">
+            <div className="w-full">
+              <PreviewWrapper>
+                <Template data={cvData} />
+              </PreviewWrapper>
+            </div>
+          </div>
+          <div className="p-4 bg-white border-t">
+            <Button
+              onClick={() => setIsPreviewOpen(false)}
+              className="w-full bg-black text-white font-bold"
+            >
+              RETOURNER À L'ÉDITION
+            </Button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
