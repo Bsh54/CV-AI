@@ -19,7 +19,6 @@ export default function Home() {
           </button>
         </Link>
       </main>
-      <Footer />
     </div>
   );
 }
