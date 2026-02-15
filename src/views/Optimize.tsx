@@ -65,6 +65,9 @@ export default function Optimize() {
 
         <div className="bg-white p-8 rounded-xl shadow-md border space-y-8">
           <div className="text-center space-y-2 text-black">
+            <div className="inline-flex p-3 rounded-full bg-[#f0f7f7] text-[#00a99d] mb-2">
+              <Sparkles className="w-6 h-6" />
+            </div>
             <h1 className="text-2xl font-bold">Optimisation par IA</h1>
             <p className="text-gray-500">Adaptez votre CV à votre cible.</p>
           </div>
