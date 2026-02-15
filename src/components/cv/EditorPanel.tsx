@@ -260,7 +260,7 @@ export default function EditorPanel({ data, onChange }: EditorPanelProps) {
       <div className="pt-6 border-t space-y-4">
         {!data.isOptimized ? (
           <Button onClick={() => navigate("/optimize")} className="w-full py-8 bg-[#00a99d] hover:bg-[#008c82] text-lg font-black shadow-lg flex items-center justify-center gap-3 transition-transform active:scale-95 text-white">
-            ÉTAPE SUIVANTE : OPTIMISER <Sparkles className="w-5 h-5 fill-white" />
+            ÉTAPE SUIVANTE : OPTIMISER <Send className="w-5 h-5 fill-white" />
           </Button>
         ) : (
           <div className="space-y-4">
