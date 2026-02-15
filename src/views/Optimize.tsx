@@ -46,7 +46,7 @@ export default function Optimize() {
       // Stockage uniquement en RAM
       setDemoData(optimized);
 
-      toast.update(toastId, { render: "✨ CV Optimisé !", type: "success", isLoading: false, autoClose: 2000 });
+      toast.update(toastId, { render: "CV Optimisé !", type: "success", isLoading: false, autoClose: 2000 });
       navigate(`/modeles/1`);
     } catch (error) {
       toast.update(toastId, { render: "❌ Erreur d'optimisation", type: "error", isLoading: false, autoClose: 3000 });

@@ -264,7 +264,7 @@ export default function EditorPanel({ data, onChange }: EditorPanelProps) {
           </Button>
         ) : (
           <div className="space-y-4">
-            <div className="p-3 bg-green-50 border border-green-200 rounded-lg text-green-700 text-[10px] font-bold uppercase tracking-widest text-center">✨ Optimisation effectuée</div>
+            <div className="p-3 bg-green-50 border border-green-200 rounded-lg text-green-700 text-[10px] font-bold uppercase tracking-widest text-center">Optimisation effectuée</div>
             <Button onClick={handleExportPDF} disabled={isExporting} className="w-full py-8 bg-[#00a99d] hover:bg-[#008c82] font-black text-lg shadow-lg text-white">
                 {isExporting ? <Loader2 className="animate-spin mr-2" /> : <Download className="mr-2" />} TÉLÉCHARGER LE CV (PDF)
             </Button>
