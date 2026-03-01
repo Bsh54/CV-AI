@@ -7,6 +7,18 @@ import { generatePDFFromHTML } from '../services/pdf.service';
 
 const router = Router();
 
+// Endpoint de test pour le HTML
+router.post('/test-html', async (req: Request, res: Response) => {
+  try {
+    const { cvData }: GeneratePDFRequest = req.body;
+    const html = renderCVToHTML(cvData);
+    res.setHeader('Content-Type', 'text/html');
+    res.send(html);
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 router.post('/generate-pdf', async (req: Request, res: Response) => {
   try {
     const { cvData, jobOffer, companyInfo }: GeneratePDFRequest = req.body;
@@ -40,13 +52,13 @@ router.post('/generate-pdf', async (req: Request, res: Response) => {
 
     // Étape 2: Rendu HTML
     console.log('🎨 Rendering HTML...');
-    const html = await renderCVToHTML(optimizedData);
-    console.log('✅ HTML rendered');
+    const html = renderCVToHTML(optimizedData);
+    console.log('✅ HTML rendered, length:', html.length);
 
     // Étape 3: Génération PDF
     console.log('📑 Generating PDF...');
     const pdfBuffer = await generatePDFFromHTML(html);
-    console.log('✅ PDF generated');
+    console.log('✅ PDF generated, size:', pdfBuffer.length);
 
     // Envoi du PDF
     const filename = `CV_${cvData.fullName.replace(/\s+/g, '_')}.pdf`;

@@ -23,21 +23,22 @@ const limiter = rateLimit({
 
 app.use('/api/', limiter);
 
-// Protection des routes API
-app.use('/api/generate-pdf', validateApiKey);
-
 // Health check
 app.get('/health', (req: Request, res: Response) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// Routes
+// Routes (test-html sans auth)
 app.use('/api', pdfRoutes);
+
+// Protection des routes API (après les routes pour ne protéger que generate-pdf)
+app.use('/api/generate-pdf', validateApiKey);
 
 // Démarrage du serveur
 app.listen(PORT, () => {
   console.log(`🚀 API Server running on http://localhost:${PORT}`);
   console.log(`📊 Health check: http://localhost:${PORT}/health`);
+  console.log(`🔑 API_KEY loaded:`, process.env.API_KEY ? 'Yes' : 'No');
 });
 
 export default app;

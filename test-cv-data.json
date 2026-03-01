@@ -1,0 +1,52 @@
+{
+  "cvData": {
+    "fullName": "John Doe",
+    "title": "Développeur Full Stack",
+    "color": "#00a99d",
+    "contact": {
+      "phone": "+33 6 12 34 56 78",
+      "email": "john.doe@example.com",
+      "address": "Paris, France"
+    },
+    "about": "Développeur Full Stack passionné avec 5 ans d'expérience dans la création d'applications web modernes. Expert en React, Node.js et TypeScript.",
+    "experiences": [
+      {
+        "role": "Développeur Full Stack Senior",
+        "company": "Tech Startup / Paris",
+        "startDate": "2021",
+        "endDate": "Present",
+        "isCurrent": true,
+        "description": "Développement d'applications web avec React et Node.js. Mise en place d'architectures scalables et maintenables."
+      },
+      {
+        "role": "Développeur Frontend",
+        "company": "Digital Agency / Lyon",
+        "startDate": "2019",
+        "endDate": "2021",
+        "isCurrent": false,
+        "description": "Création d'interfaces utilisateur modernes et responsives. Optimisation des performances web."
+      }
+    ],
+    "education": [
+      {
+        "degree": "Master Informatique",
+        "school": "Université Paris-Saclay",
+        "startDate": "2017",
+        "endDate": "2019",
+        "isCurrent": false
+      }
+    ],
+    "certifications": [],
+    "skills": [
+      { "name": "React", "level": 90 },
+      { "name": "Node.js", "level": 85 },
+      { "name": "TypeScript", "level": 88 },
+      { "name": "PostgreSQL", "level": 75 }
+    ],
+    "tools": [],
+    "links": [],
+    "languages": ["Français", "Anglais"],
+    "hobbies": ["Lecture", "Voyages", "Photographie"],
+    "references": []
+  }
+}
