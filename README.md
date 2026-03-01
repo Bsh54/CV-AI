@@ -49,11 +49,86 @@ Créez un fichier `.env` à la racine du projet et configurez vos accès API :
 ```env
 VITE_AI_API_URL=https://votre-point-de-terminaison-ia.com/v1/chat/completions
 VITE_AI_API_KEY=votre_cle_api_secrete
+
+# API Configuration (pour l'API REST)
+PORT=4000
+API_KEY=your_secret_api_key_here
 ```
 
 ### 4. Lancer l'application
+
+**Interface Web** :
 ```bash
 npm run dev
+```
+
+**API REST** :
+```bash
+npm run api:dev
+```
+
+---
+
+## 🔌 API REST
+
+L'application dispose également d'une API REST pour générer des CV en PDF de manière programmatique.
+
+### Endpoint Principal
+
+**POST** `/api/generate-pdf`
+
+**Headers** :
+```
+X-API-Key: your_secret_api_key
+Content-Type: application/json
+```
+
+**Body** :
+```json
+{
+  "cvData": {
+    "fullName": "John Doe",
+    "title": "Développeur Full Stack",
+    "color": "#00a99d",
+    "contact": {
+      "phone": "+33 6 12 34 56 78",
+      "email": "john@example.com",
+      "address": "Paris, France"
+    },
+    "about": "Développeur passionné...",
+    "experiences": [],
+    "education": [],
+    "skills": [],
+    "languages": [],
+    "hobbies": [],
+    "references": []
+  },
+  "jobOffer": "Nous recherchons un développeur...",
+  "companyInfo": "Startup innovante..."
+}
+```
+
+**Response** : PDF binary (application/pdf)
+
+### Exemple avec cURL
+
+```bash
+curl -X POST http://localhost:4000/api/generate-pdf \
+  -H "X-API-Key: your_api_key" \
+  -H "Content-Type: application/json" \
+  -d @cv-data.json \
+  --output cv.pdf
+```
+
+### Démarrage de l'API
+
+```bash
+# Développement
+npm run api:dev
+
+# Production
+npm run api:build
+npm run api:start
 ```
 
 ---
@@ -80,4 +155,4 @@ Si ce projet vous aide dans votre recherche d'emploi, n'hésitez pas à lui donn
 *(Projet maintenu par Bsh54)*
 
 ---
-*Dernière mise à jour : 15 Février 2026*
+*Dernière mise à jour : 1er Mars 2026*
