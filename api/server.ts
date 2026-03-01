@@ -2,6 +2,8 @@ import express, { Request, Response } from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import rateLimit from 'express-rate-limit';
+import { validateApiKey } from './middleware/auth';
+import pdfRoutes from './routes/pdf.routes';
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -20,10 +22,16 @@ const limiter = rateLimit({
 
 app.use('/api/', limiter);
 
+// Protection des routes API
+app.use('/api/generate-pdf', validateApiKey);
+
 // Health check
 app.get('/health', (req: Request, res: Response) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
+
+// Routes
+app.use('/api', pdfRoutes);
 
 // Démarrage du serveur
 app.listen(PORT, () => {
