@@ -207,7 +207,7 @@ export default function EditorPanel({ data, onChange }: EditorPanelProps) {
         `}</style>
       )}
 
-      <Accordion type="multiple" defaultValue={["infos", "experiences"]} className="w-full">
+      <Accordion type="multiple" defaultValue={["infos"]} className="w-full">
 
         {/* 1. INFOS & PHOTO */}
         <AccordionItem value="infos">
