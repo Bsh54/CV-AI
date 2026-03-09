@@ -26,30 +26,20 @@ export const PdfSafeWrapper: React.FC<PdfSafeWrapperProps> = ({ children }) => {
           margin: 0 !important;
           padding: 0 !important;
           background-color: white !important;
-          overflow: hidden !important;
+          overflow: hidden !important; /* Force la page unique */
           display: flex !important;
           flex-direction: row !important;
           position: relative !important;
           box-shadow: none !important;
           transform: none !important;
           border: none !important;
-          page-break-after: avoid !important;
-          page-break-inside: avoid !important;
         }
 
-        /* Forcer une seule page - éviter les débordements */
+        /* FIX POUR LES ICÔNES ET COULEURS (html2canvas ne supporte pas oklch) */
         .pdf-export-mode * {
           -webkit-print-color-adjust: exact !important;
           print-color-adjust: exact !important;
           box-sizing: border-box !important;
-          page-break-inside: avoid !important;
-          page-break-after: avoid !important;
-        }
-
-        /* Limiter la hauteur des sections */
-        .pdf-export-mode section {
-          page-break-inside: avoid !important;
-          overflow: hidden !important;
         }
 
         /* Traduction de la palette Slate (Tailwind 4) en HEX pour le moteur PDF */
@@ -87,24 +77,14 @@ export const PdfSafeWrapper: React.FC<PdfSafeWrapperProps> = ({ children }) => {
         .pdf-export-mode aside {
           width: 38% !important;
           background-color: #f0f7f7 !important;
-          height: 1123px !important;
-          max-height: 1123px !important;
-          overflow: hidden !important;
+          height: 100% !important;
         }
 
         .pdf-export-mode main {
           width: 62% !important;
           background-color: #ffffff !important;
-          height: 1123px !important;
-          max-height: 1123px !important;
-          overflow: hidden !important;
+          height: 100% !important;
         }
-
-        /* Réduire les espacements pour éviter le débordement */
-        .pdf-export-mode .space-y-10 > * + * { margin-top: 1.5rem !important; }
-        .pdf-export-mode .space-y-8 > * + * { margin-top: 1rem !important; }
-        .pdf-export-mode .space-y-6 > * + * { margin-top: 0.75rem !important; }
-        .pdf-export-mode .space-y-4 > * + * { margin-top: 0.5rem !important; }
       `}} />
       {children}
     </div>
