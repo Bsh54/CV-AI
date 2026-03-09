@@ -17,8 +17,6 @@ export default function ModeleEditor() {
   const navigate = useNavigate();
   const model = modelId ? cvModels[modelId] : null;
   const [isExporting, setIsExporting] = useState(false);
-  const previewRef = React.useRef<HTMLDivElement>(null);
-  const editorRef = React.useRef<HTMLDivElement>(null);
 
   const getDefaultData = (): CVData => ({
     fullName: "NOEL TAYLOR",
@@ -83,22 +81,6 @@ export default function ModeleEditor() {
   useEffect(() => {
     setDemoData(cvData);
   }, [cvData]);
-
-  // Synchronisation du scroll entre l'éditeur et la prévisualisation
-  useEffect(() => {
-    const editorElement = editorRef.current;
-    const previewElement = previewRef.current;
-
-    if (!editorElement || !previewElement) return;
-
-    const handleEditorScroll = () => {
-      const scrollPercentage = editorElement.scrollTop / (editorElement.scrollHeight - editorElement.clientHeight);
-      previewElement.scrollTop = scrollPercentage * (previewElement.scrollHeight - previewElement.clientHeight);
-    };
-
-    editorElement.addEventListener("scroll", handleEditorScroll);
-    return () => editorElement.removeEventListener("scroll", handleEditorScroll);
-  }, []);
 
   if (!model) return <div className="py-32 text-center text-black font-bold uppercase">Modèle introuvable</div>;
 
@@ -190,12 +172,12 @@ export default function ModeleEditor() {
     <div className="min-h-screen bg-gray-50 flex flex-col text-black">
       <Navbar />
       <main className="flex-1 pt-20 flex flex-col lg:flex-row">
-        <div ref={editorRef} className="w-full lg:w-[450px] bg-white border-r shadow-lg overflow-y-auto p-6 scrollbar-hide">
+        <div className="w-full lg:w-[450px] bg-white border-r shadow-lg overflow-y-auto p-6 scrollbar-hide">
           <EditorPanel data={cvData} onChange={setCvData} />
         </div>
 
-        {/* Prévisualisation Desktop avec défilement synchronisé */}
-        <div ref={previewRef} className="hidden lg:flex flex-1 bg-gray-200 overflow-y-auto p-4 md:p-12 justify-center">
+        {/* Prévisualisation Desktop */}
+        <div className="hidden lg:flex flex-1 bg-gray-200 overflow-y-auto p-4 md:p-12 justify-center">
           <div className="w-full max-w-[850px]">
             <PreviewWrapper>
               <Template data={cvData} />
