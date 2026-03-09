@@ -19,11 +19,6 @@ export default function Home() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-8 relative z-10">
             <div className="space-y-4">
-              <div className="inline-block">
-                <span className="px-4 py-2 bg-white/40 backdrop-blur-md border border-white/20 rounded-full text-sm font-semibold text-indigo-600">
-                  ✨ Powered by AI
-                </span>
-              </div>
               <h1 className="text-6xl md:text-7xl font-black leading-tight bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
                 Votre CV Parfait en Secondes
               </h1>
