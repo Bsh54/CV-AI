@@ -170,10 +170,25 @@ export default function ModeleEditor() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col text-black">
+      <style>{`
+        .editor-scroll::-webkit-scrollbar {
+          width: 12px;
+        }
+        .editor-scroll::-webkit-scrollbar-track {
+          background: #f1f5f9;
+        }
+        .editor-scroll::-webkit-scrollbar-thumb {
+          background: #00a99d;
+          border-radius: 6px;
+        }
+        .editor-scroll::-webkit-scrollbar-thumb:hover {
+          background: #008c82;
+        }
+      `}</style>
       <Navbar />
       <main className="flex-1 pt-20 flex flex-col lg:flex-row h-[calc(100vh-80px)]">
         {/* Panneau d'édition avec scroll visible */}
-        <div className="w-full lg:w-[450px] bg-white border-r shadow-lg overflow-y-auto p-6" style={{ scrollbarWidth: 'auto' }}>
+        <div className="editor-scroll w-full lg:w-[450px] bg-white border-r shadow-lg overflow-y-auto p-6">
           <EditorPanel data={cvData} onChange={setCvData} />
         </div>
 
