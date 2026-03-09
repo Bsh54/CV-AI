@@ -172,9 +172,6 @@ export default function ModeleEditor() {
       <Navbar />
       <main className="flex-1 pt-20 flex flex-col lg:flex-row h-[calc(100vh-80px)] overflow-hidden">
         <div className="w-full lg:w-[450px] bg-white border-r shadow-lg overflow-y-auto p-6 scrollbar-hide">
-          <div className="mb-8 text-center border-b pb-4">
-            <h1 className="text-2xl font-black text-gray-800 uppercase leading-none mb-1">Votre CV</h1>
-          </div>
           <EditorPanel data={cvData} onChange={setCvData} />
         </div>
 
