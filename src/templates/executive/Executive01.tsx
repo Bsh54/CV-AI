@@ -1,13 +1,12 @@
 import type { CVData } from "@/types";
 import { PdfSafeWrapper } from "@/components/cv/PdfSafeWrapper";
-import { Mail, Phone, MapPin, Briefcase, GraduationCap, Globe } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 
 interface CVTemplateProps {
   data: CVData;
 }
 
 export default function ExecutiveTemplate({ data }: CVTemplateProps) {
-  const primaryColor = "#1f2937"; // Gray-800
   const accentColor = "#d97706"; // Amber-600
 
   return (

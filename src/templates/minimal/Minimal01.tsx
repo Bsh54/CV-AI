@@ -7,7 +7,6 @@ interface CVTemplateProps {
 }
 
 export default function MinimalTemplate({ data }: CVTemplateProps) {
-  const primaryColor = "#1f2937"; // Gray-800
   const accentColor = "#3b82f6"; // Blue-500
 
   return (

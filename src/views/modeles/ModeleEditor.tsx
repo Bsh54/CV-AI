@@ -1,6 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import React from "react";
 import type { CVData } from "@/types";
 import Navbar from "@/components/navbar";
 import { cvModels } from "@/data/cvModels";

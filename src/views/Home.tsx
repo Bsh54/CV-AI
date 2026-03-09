@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
-import { Sparkles, Zap, Target, CheckCircle, ArrowRight, Wand2, FileText, Rocket } from "lucide-react";
+import { Sparkles, CheckCircle, ArrowRight, Wand2, FileText, Rocket } from "lucide-react";
 
 export default function Home() {
   return (
