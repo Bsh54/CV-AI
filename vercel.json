@@ -1,13 +1,1 @@
-{
-  "functions": {
-    "api/health.ts": {
-      "maxDuration": 10
-    },
-    "api/generate-pdf.ts": {
-      "maxDuration": 30
-    },
-    "api/test-html.ts": {
-      "maxDuration": 10
-    }
-  }
-}
+{}
