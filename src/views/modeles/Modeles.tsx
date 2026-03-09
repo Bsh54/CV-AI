@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { cvModels } from "@/data/cvModels";
 import { useState } from "react";
 import type { CVData } from "@/types";
-import { PreviewWrapper } from "@/components/cv/PreviewWrapper";
+import PreviewWrapper from "@/components/cv/PreviewWrapper";
 
 const templateDescriptions: Record<string, string> = {
   "1": "Design moderne et stratégique, optimisé pour les recruteurs et ATS.",
