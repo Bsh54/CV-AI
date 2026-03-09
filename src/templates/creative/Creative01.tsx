@@ -1,6 +1,6 @@
 import type { CVData } from "@/types";
 import { PdfSafeWrapper } from "@/components/cv/PdfSafeWrapper";
-import { Mail, Phone, MapPin, Briefcase, Palette, Lightbulb } from "lucide-react";
+import { Mail, Phone, MapPin, Briefcase, Palette, Lightbulb, BookOpen, Globe } from "lucide-react";
 
 interface CVTemplateProps {
   data: CVData;
@@ -35,7 +35,9 @@ export default function CreativeTemplate({ data }: CVTemplateProps) {
           <div className="space-y-8 text-black">
             <section>
               <div className="flex items-center gap-2 mb-4">
-                <div className="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold" style={{ backgroundColor: primaryColor }}>✉</div>
+                <div className="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold" style={{ backgroundColor: primaryColor }}>
+                  <Mail size={12} />
+                </div>
                 <h3 className="text-[10px] font-black uppercase tracking-[0.2em]">Contact</h3>
               </div>
               <div className="space-y-3 text-[10px] font-medium text-slate-700 pl-8">
@@ -49,7 +51,9 @@ export default function CreativeTemplate({ data }: CVTemplateProps) {
             {data.education.length > 0 && (
               <section>
                 <div className="flex items-center gap-2 mb-4">
-                  <div className="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold" style={{ backgroundColor: secondaryColor }}>🎓</div>
+                  <div className="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold" style={{ backgroundColor: secondaryColor }}>
+                    <BookOpen size={12} />
+                  </div>
                   <h3 className="text-[10px] font-black uppercase tracking-[0.2em]">Formation</h3>
                 </div>
                 <div className="space-y-4 pl-8">
@@ -68,7 +72,9 @@ export default function CreativeTemplate({ data }: CVTemplateProps) {
             {data.languages.length > 0 && (
               <section>
                 <div className="flex items-center gap-2 mb-3">
-                  <div className="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold" style={{ backgroundColor: primaryColor }}>🌐</div>
+                  <div className="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold" style={{ backgroundColor: primaryColor }}>
+                    <Globe size={12} />
+                  </div>
                   <h3 className="text-[10px] font-black uppercase tracking-[0.2em]">Langues</h3>
                 </div>
                 <div className="space-y-2 pl-8">
