@@ -1,6 +1,6 @@
 import type { CVData } from "@/types";
 import { PdfSafeWrapper } from "@/components/cv/PdfSafeWrapper";
-import { Mail, Phone, MapPin, Rocket, TrendingUp, Zap } from "lucide-react";
+import { Mail, Phone, MapPin, Rocket, TrendingUp, Zap, Lightbulb } from "lucide-react";
 
 interface CVTemplateProps {
   data: CVData;
@@ -45,7 +45,9 @@ export default function StartupTemplate({ data }: CVTemplateProps) {
           {data.about && (
             <section>
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm" style={{ backgroundColor: primaryColor }}>💡</div>
+                <div className="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm" style={{ backgroundColor: primaryColor }}>
+                  <Lightbulb size={16} />
+                </div>
                 <h2 className="text-sm font-black uppercase tracking-[0.2em] text-slate-900">Vision & Mission</h2>
               </div>
               <div className="pl-12 border-l-4" style={{ borderColor: primaryColor }}>
