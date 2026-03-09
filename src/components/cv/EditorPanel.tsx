@@ -240,7 +240,7 @@ export default function EditorPanel({ data, onChange }: EditorPanelProps) {
                 {data.skills.map((s, i) => (
                     <div key={i} className="flex gap-2 items-center bg-white p-2 border rounded">
                         <input className="flex-1 text-xs outline-none" value={s.name} onChange={(e) => updateItem("skills", i, "name", e.target.value)} />
-                        <input type="number" className="w-10 text-xs text-center" value={s.level} onChange={(e) => updateItem("skills", i, "level", parseInt(e.target.value))} />
+                        <input type="number" className="w-10 text-xs text-center" value={s.level || 0} onChange={(e) => updateItem("skills", i, "level", parseInt(e.target.value) || 0)} min="0" max="100" />
                         <button onClick={() => removeItem("skills", i)}><X className="w-3 h-3 text-red-400"/></button>
                     </div>
                 ))}
