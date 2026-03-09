@@ -152,6 +152,31 @@ export default function EditorPanel({ data, onChange }: EditorPanelProps) {
 
   return (
     <div className="space-y-6">
+      {/* HEADER AVEC BOUTONS EN HAUT À DROITE */}
+      <div className="flex justify-between items-center gap-4 pb-4 border-b">
+        <h2 className="text-lg font-black text-gray-800 uppercase">Votre CV</h2>
+        <div className="flex gap-2">
+          {!data.isOptimized ? (
+            <>
+              <Button onClick={handleExportPDF} disabled={isExporting} size="sm" variant="outline" className="text-[11px] font-bold border-[#00a99d] text-[#00a99d] hover:bg-[#f0f7f7]">
+                {isExporting ? <Loader2 className="animate-spin mr-1 w-3 h-3" /> : <Download className="mr-1 w-3 h-3" />} PDF
+              </Button>
+              <Button onClick={() => navigate("/optimize")} size="sm" className="text-[11px] font-black bg-[#00a99d] hover:bg-[#008c82] text-white">
+                <Sparkles className="w-3 h-3 fill-white mr-1" /> OPTIMISER
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button onClick={handleExportPDF} disabled={isExporting} size="sm" className="text-[11px] font-black bg-[#00a99d] hover:bg-[#008c82] text-white">
+                {isExporting ? <Loader2 className="animate-spin mr-1 w-3 h-3" /> : <Download className="mr-1 w-3 h-3" />} PDF
+              </Button>
+              <Button onClick={() => window.print()} size="sm" variant="outline" className="text-[11px] font-bold border-[#00a99d] text-[#00a99d] hover:bg-[#f0f7f7]">
+                <Printer className="mr-1 w-3 h-3" /> IMPRIMER
+              </Button>
+            </>
+          )}
+        </div>
+      </div>
       <Accordion type="multiple" defaultValue={["infos", "experiences", "others"]} className="w-full">
 
         {/* 1. INFOS & PHOTO */}
@@ -276,24 +301,8 @@ export default function EditorPanel({ data, onChange }: EditorPanelProps) {
       </Accordion>
 
       <div className="pt-6 border-t space-y-4">
-        {!data.isOptimized ? (
-          <div className="space-y-3">
-            <Button onClick={() => navigate("/optimize")} className="w-full py-8 bg-[#00a99d] hover:bg-[#008c82] text-lg font-black shadow-lg flex items-center justify-center gap-3 transition-transform active:scale-95 text-white">
-              ÉTAPE SUIVANTE : OPTIMISER <Sparkles className="w-5 h-5 fill-white" />
-            </Button>
-            <Button onClick={handleExportPDF} disabled={isExporting} variant="outline" className="w-full py-4 font-bold border-2 text-[#00a99d] border-[#00a99d] hover:bg-[#f0f7f7]">
-              {isExporting ? <Loader2 className="animate-spin mr-2" /> : <Download className="mr-2" />} TÉLÉCHARGER LE CV (PDF)
-            </Button>
-          </div>
-        ) : (
-          <div className="space-y-4">
-            <div className="p-3 bg-green-50 border border-green-200 rounded-lg text-green-700 text-[10px] font-bold uppercase tracking-widest text-center">Optimisation effectuée</div>
-            <Button onClick={handleExportPDF} disabled={isExporting} className="w-full py-8 bg-[#00a99d] hover:bg-[#008c82] font-black text-lg shadow-lg text-white">
-                {isExporting ? <Loader2 className="animate-spin mr-2" /> : <Download className="mr-2" />} TÉLÉCHARGER LE CV (PDF)
-            </Button>
-            <Button variant="outline" onClick={() => window.print()} className="w-full py-4 font-bold border-2 text-[#00a99d] border-[#00a99d] hover:bg-[#f0f7f7]"><Printer className="mr-2 h-4 w-4" /> IMPRIMER</Button>
-            <button onClick={() => navigate("/optimize")} className="w-full text-[#00a99d] hover:underline text-[10px] font-black uppercase pt-2">Modifier l'offre d'emploi</button>
-          </div>
+        {data.isOptimized && (
+          <button onClick={() => navigate("/optimize")} className="w-full text-[#00a99d] hover:underline text-[10px] font-black uppercase pt-2">Modifier l'offre d'emploi</button>
         )}
       </div>
     </div>
