@@ -176,7 +176,7 @@ export default function ModeleEditor() {
         </div>
 
         {/* Prévisualisation Desktop avec défilement synchronisé */}
-        <div className="hidden lg:flex flex-1 bg-gray-200 overflow-y-auto p-4 md:p-12 justify-center">
+        <div className="hidden lg:flex flex-1 bg-gray-200 overflow-y-auto p-4 md:p-12 justify-center relative">
           {/* BANDE FLOTTANTE EN HAUT */}
           <div className="fixed top-24 left-1/2 transform -translate-x-1/2 z-50 bg-white rounded-full shadow-lg px-6 py-3 flex gap-3 items-center border border-gray-200">
             {!cvData.isOptimized ? (
@@ -218,7 +218,8 @@ export default function ModeleEditor() {
             )}
           </div>
 
-          <div className="w-full max-w-[850px] pt-20">
+          {/* CV AVEC PADDING POUR LA BANDE FLOTTANTE */}
+          <div className="w-full max-w-[850px] pt-24">
             <PreviewWrapper>
               <Template data={cvData} />
             </PreviewWrapper>
