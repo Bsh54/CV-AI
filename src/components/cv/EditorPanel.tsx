@@ -279,8 +279,26 @@ export default function EditorPanel({ data, onChange }: EditorPanelProps) {
       </Accordion>
 
       <div className="pt-6 border-t space-y-4">
-        {data.isOptimized && (
-          <button onClick={() => navigate("/optimize")} className="w-full text-[#00a99d] hover:underline text-[10px] font-black uppercase pt-2">Modifier l'offre d'emploi</button>
+        {!data.isOptimized ? (
+          <div className="space-y-3">
+            <Button onClick={handleExportPDF} disabled={isExporting} className="w-full py-6 bg-gray-800 hover:bg-gray-900 text-white font-black text-lg shadow-lg flex items-center justify-center gap-2">
+              {isExporting ? <Loader2 className="animate-spin w-5 h-5" /> : <Download className="w-5 h-5" />} TÉLÉCHARGER LE CV (PDF)
+            </Button>
+            <Button onClick={() => navigate("/optimize")} className="w-full py-6 bg-[#00a99d] hover:bg-[#008c82] text-white font-black text-lg shadow-lg flex items-center justify-center gap-2">
+              <Sparkles className="w-5 h-5 fill-white" /> ÉTAPE SUIVANTE : OPTIMISER
+            </Button>
+          </div>
+        ) : (
+          <div className="space-y-3">
+            <div className="p-3 bg-green-50 border border-green-200 rounded-lg text-green-700 text-[10px] font-bold uppercase tracking-widest text-center">✓ Optimisation effectuée</div>
+            <Button onClick={handleExportPDF} disabled={isExporting} className="w-full py-6 bg-[#00a99d] hover:bg-[#008c82] text-white font-black text-lg shadow-lg flex items-center justify-center gap-2">
+              {isExporting ? <Loader2 className="animate-spin w-5 h-5" /> : <Download className="w-5 h-5" />} TÉLÉCHARGER LE CV (PDF)
+            </Button>
+            <Button variant="outline" onClick={() => window.print()} className="w-full py-4 font-bold border-2 text-[#00a99d] border-[#00a99d] hover:bg-[#f0f7f7]">
+              <Printer className="mr-2 h-4 w-4" /> IMPRIMER
+            </Button>
+            <button onClick={() => navigate("/optimize")} className="w-full text-[#00a99d] hover:underline text-[10px] font-black uppercase pt-2">Modifier l'offre d'emploi</button>
+          </div>
         )}
       </div>
     </div>
