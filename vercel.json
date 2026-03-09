@@ -9,19 +9,5 @@
     "api/test-html.ts": {
       "maxDuration": 10
     }
-  },
-  "builds": [
-    {
-      "src": "api/health.ts",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "api/generate-pdf.ts",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "api/test-html.ts",
-      "use": "@vercel/node"
-    }
-  ]
+  }
 }
