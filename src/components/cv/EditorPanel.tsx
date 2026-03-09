@@ -152,30 +152,8 @@ export default function EditorPanel({ data, onChange }: EditorPanelProps) {
 
   return (
     <div className="space-y-6">
-      {/* HEADER AVEC BOUTONS EN HAUT À DROITE */}
-      <div className="flex justify-between items-center gap-4 pb-4 border-b">
-        <h2 className="text-lg font-black text-gray-800 uppercase">Votre CV</h2>
-        <div className="flex gap-2">
-          {!data.isOptimized ? (
-            <>
-              <Button onClick={handleExportPDF} disabled={isExporting} size="sm" variant="outline" className="text-[11px] font-bold border-[#00a99d] text-[#00a99d] hover:bg-[#f0f7f7]">
-                {isExporting ? <Loader2 className="animate-spin mr-1 w-3 h-3" /> : <Download className="mr-1 w-3 h-3" />} PDF
-              </Button>
-              <Button onClick={() => navigate("/optimize")} size="sm" className="text-[11px] font-black bg-[#00a99d] hover:bg-[#008c82] text-white">
-                <Sparkles className="w-3 h-3 fill-white mr-1" /> OPTIMISER
-              </Button>
-            </>
-          ) : (
-            <>
-              <Button onClick={handleExportPDF} disabled={isExporting} size="sm" className="text-[11px] font-black bg-[#00a99d] hover:bg-[#008c82] text-white">
-                {isExporting ? <Loader2 className="animate-spin mr-1 w-3 h-3" /> : <Download className="mr-1 w-3 h-3" />} PDF
-              </Button>
-              <Button onClick={() => window.print()} size="sm" variant="outline" className="text-[11px] font-bold border-[#00a99d] text-[#00a99d] hover:bg-[#f0f7f7]">
-                <Printer className="mr-1 w-3 h-3" /> IMPRIMER
-              </Button>
-            </>
-          )}
-        </div>
+      <div className="mb-8 text-center border-b pb-4">
+        <h1 className="text-2xl font-black text-gray-800 uppercase leading-none mb-1">Votre CV</h1>
       </div>
       <Accordion type="multiple" defaultValue={["infos", "experiences", "others"]} className="w-full">
 
