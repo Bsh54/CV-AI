@@ -152,7 +152,7 @@ export default function EditorPanel({ data, onChange }: EditorPanelProps) {
 
   return (
     <div className="space-y-6">
-      <Accordion type="multiple" defaultValue={["infos", "experiences"]} className="w-full">
+      <Accordion type="multiple" defaultValue={["infos", "experiences", "others"]} className="w-full">
 
         {/* 1. INFOS & PHOTO */}
         <AccordionItem value="infos">
@@ -277,9 +277,14 @@ export default function EditorPanel({ data, onChange }: EditorPanelProps) {
 
       <div className="pt-6 border-t space-y-4">
         {!data.isOptimized ? (
-          <Button onClick={() => navigate("/optimize")} className="w-full py-8 bg-[#00a99d] hover:bg-[#008c82] text-lg font-black shadow-lg flex items-center justify-center gap-3 transition-transform active:scale-95 text-white">
-            ÉTAPE SUIVANTE : OPTIMISER <Sparkles className="w-5 h-5 fill-white" />
-          </Button>
+          <div className="space-y-3">
+            <Button onClick={() => navigate("/optimize")} className="w-full py-8 bg-[#00a99d] hover:bg-[#008c82] text-lg font-black shadow-lg flex items-center justify-center gap-3 transition-transform active:scale-95 text-white">
+              ÉTAPE SUIVANTE : OPTIMISER <Sparkles className="w-5 h-5 fill-white" />
+            </Button>
+            <Button onClick={handleExportPDF} disabled={isExporting} variant="outline" className="w-full py-4 font-bold border-2 text-[#00a99d] border-[#00a99d] hover:bg-[#f0f7f7]">
+              {isExporting ? <Loader2 className="animate-spin mr-2" /> : <Download className="mr-2" />} TÉLÉCHARGER LE CV (PDF)
+            </Button>
+          </div>
         ) : (
           <div className="space-y-4">
             <div className="p-3 bg-green-50 border border-green-200 rounded-lg text-green-700 text-[10px] font-bold uppercase tracking-widest text-center">Optimisation effectuée</div>
