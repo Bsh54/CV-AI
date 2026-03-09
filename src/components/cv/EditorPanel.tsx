@@ -75,34 +75,68 @@ export default function EditorPanel({ data, onChange }: EditorPanelProps) {
     const toastId = toast.loading("Génération du PDF haute fidélité...");
 
     try {
+      // Fonction pour convertir oklch en hex
+      const convertOklchToHex = (oklchStr: string): string => {
+        const match = oklchStr.match(/oklch\(([\d.]+)%?\s+([\d.]+)%?\s+([\d.]+)deg?\)/);
+        if (!match) return "#1e293b";
+
+        // Conversion simplifiée oklch -> hex (approximation)
+        const l = parseFloat(match[1]) / 100;
+        const c = parseFloat(match[2]) / 100;
+        const h = parseFloat(match[3]);
+
+        // Conversion LCH to RGB (approximation)
+        const hRad = (h * Math.PI) / 180;
+        const r = Math.round(Math.max(0, Math.min(255, l * 255 + c * 100 * Math.cos(hRad))));
+        const g = Math.round(Math.max(0, Math.min(255, l * 255 + c * 100 * Math.sin(hRad))));
+        const b = Math.round(Math.max(0, Math.min(255, l * 255 - c * 100)));
+
+        return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+      };
+
       const opt = {
         margin: 0,
         filename: `CV_${data.fullName.replace(/\s+/g, "_")}.pdf`,
         image: { type: "jpeg", quality: 1.0 },
         html2canvas: {
-          scale: 4, // Qualité maximale pour éviter le flou
+          scale: 4,
           useCORS: true,
           letterRendering: true,
           logging: false,
           backgroundColor: "#ffffff",
           onclone: (clonedDoc: Document) => {
-            // 1. FIX OKLCH PROFOND : html2canvas ne supporte pas oklch()
-            // On parcourt toutes les feuilles de style et on remplace oklch par une couleur hex/rgb
             try {
+              // 1. FIX OKLCH DANS LES STYLES
               const styles = clonedDoc.querySelectorAll("style");
               styles.forEach(s => {
-                s.innerHTML = s.innerHTML.replace(/oklch\([^)]+\)/g, "#1e293b");
+                s.innerHTML = s.innerHTML.replace(/oklch\([^)]+\)/g, (match) => convertOklchToHex(match));
               });
 
-              // On nettoie aussi les styles inline qui pourraient contenir oklch
+              // 2. FIX OKLCH DANS LES ATTRIBUTS STYLE INLINE
               clonedDoc.querySelectorAll("*").forEach(el => {
                 const element = el as HTMLElement;
                 if (element.style) {
+                  // Parcourir toutes les propriétés CSS
+                  for (let i = 0; i < element.style.length; i++) {
+                    const prop = element.style[i];
+                    const value = element.style.getPropertyValue(prop);
+                    if (value && value.includes("oklch")) {
+                      const newValue = value.replace(/oklch\([^)]+\)/g, (match) => convertOklchToHex(match));
+                      element.style.setProperty(prop, newValue);
+                    }
+                  }
+
+                  // Forcer les couleurs calculées
                   const computedStyle = window.getComputedStyle(element);
-                  // Si une couleur calculée contient oklch, on la force en slate
-                  if (computedStyle.color.includes("oklch")) element.style.color = "#1e293b";
-                  if (computedStyle.backgroundColor.includes("oklch")) element.style.backgroundColor = "#ffffff";
-                  if (computedStyle.borderColor.includes("oklch")) element.style.borderColor = "#1e293b";
+                  if (computedStyle.color && computedStyle.color.includes("oklch")) {
+                    element.style.color = "#1e293b";
+                  }
+                  if (computedStyle.backgroundColor && computedStyle.backgroundColor.includes("oklch")) {
+                    element.style.backgroundColor = "#ffffff";
+                  }
+                  if (computedStyle.borderColor && computedStyle.borderColor.includes("oklch")) {
+                    element.style.borderColor = "#1e293b";
+                  }
                 }
               });
             } catch (err) {
@@ -111,7 +145,6 @@ export default function EditorPanel({ data, onChange }: EditorPanelProps) {
 
             const clonedElement = clonedDoc.querySelector(".pdf-export-mode") as HTMLElement;
             if (clonedElement) {
-              // 2. VERROUILLAGE PHYSIQUE A4
               clonedElement.style.width = "794px";
               clonedElement.style.height = "1122px";
               clonedElement.style.minHeight = "1122px";
@@ -119,19 +152,18 @@ export default function EditorPanel({ data, onChange }: EditorPanelProps) {
               clonedElement.style.overflow = "hidden";
               clonedElement.style.position = "relative";
 
-              // 3. FIX PROFOND DES ICÔNES (Injection dans les paths)
               clonedElement.querySelectorAll("svg").forEach(svg => {
                 const color = window.getComputedStyle(svg).color;
-                svg.setAttribute("stroke", color);
-                svg.style.stroke = color;
+                const hexColor = color.includes("oklch") ? "#1e293b" : color;
+                svg.setAttribute("stroke", hexColor);
+                svg.style.stroke = hexColor;
                 svg.querySelectorAll("path, circle, line, polyline, rect").forEach(path => {
                   const p = path as SVGElement;
-                  p.setAttribute("stroke", color);
-                  p.style.stroke = color;
+                  p.setAttribute("stroke", hexColor);
+                  p.style.stroke = hexColor;
                 });
               });
 
-              // 4. FIX IMAGES
               clonedElement.querySelectorAll("img").forEach(img => {
                 img.style.objectFit = "cover";
                 img.style.display = "block";
