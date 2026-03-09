@@ -63,7 +63,6 @@ const demoData: CVData = {
 
 export default function Modeles() {
   const navigate = useNavigate();
-  const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
@@ -83,8 +82,6 @@ export default function Modeles() {
                 onClick={() => navigate(`/modeles/${id}`)}
                 className="group bg-white rounded-2xl shadow-lg border-2 border-transparent hover:border-opacity-100 cursor-pointer transition-all hover:shadow-2xl overflow-hidden"
                 style={{ borderColor: model.defaultColor }}
-                onMouseEnter={() => setHoveredId(id)}
-                onMouseLeave={() => setHoveredId(null)}
               >
                 {/* Template Preview */}
                 <div className="w-full h-64 bg-gray-100 overflow-hidden relative">

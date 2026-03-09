@@ -1,6 +1,6 @@
 import type { CVData } from "@/types";
 import { PdfSafeWrapper } from "@/components/cv/PdfSafeWrapper";
-import { Mail, Phone, MapPin, Briefcase, Palette, Lightbulb, BookOpen, Globe } from "lucide-react";
+import { Mail, Phone, MapPin, BookOpen, Globe } from "lucide-react";
 
 interface CVTemplateProps {
   data: CVData;
