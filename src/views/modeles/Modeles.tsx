@@ -2,7 +2,6 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { useNavigate } from "react-router-dom";
 import { cvModels } from "@/data/cvModels";
-import { useState } from "react";
 import type { CVData } from "@/types";
 import PreviewWrapper from "@/components/cv/PreviewWrapper";
 
