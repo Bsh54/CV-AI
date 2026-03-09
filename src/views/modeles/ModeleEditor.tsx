@@ -195,50 +195,8 @@ export default function ModeleEditor() {
         </div>
 
         {/* Prévisualisation Desktop avec défilement synchronisé */}
-        <div ref={previewRef} className="hidden lg:flex flex-1 bg-gray-200 overflow-y-auto p-4 md:p-12 justify-center relative">
-          {/* BANDE FLOTTANTE EN HAUT */}
-          <div className="fixed top-24 left-1/2 transform -translate-x-1/2 z-50 bg-white rounded-full shadow-lg px-6 py-3 flex gap-3 items-center border border-gray-200">
-            {!cvData.isOptimized ? (
-              <>
-                <button
-                  onClick={handleExportPDF}
-                  disabled={isExporting}
-                  className="flex items-center gap-2 px-4 py-2 text-[12px] font-bold text-[#00a99d] border-2 border-[#00a99d] rounded-full hover:bg-[#f0f7f7] transition-colors"
-                >
-                  {isExporting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
-                  PDF
-                </button>
-                <button
-                  onClick={() => navigate("/optimize")}
-                  className="flex items-center gap-2 px-4 py-2 text-[12px] font-black text-white bg-[#00a99d] rounded-full hover:bg-[#008c82] transition-colors"
-                >
-                  <Sparkles className="w-4 h-4 fill-white" />
-                  OPTIMISER
-                </button>
-              </>
-            ) : (
-              <>
-                <button
-                  onClick={handleExportPDF}
-                  disabled={isExporting}
-                  className="flex items-center gap-2 px-4 py-2 text-[12px] font-black text-white bg-[#00a99d] rounded-full hover:bg-[#008c82] transition-colors"
-                >
-                  {isExporting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
-                  PDF
-                </button>
-                <button
-                  onClick={() => window.print()}
-                  className="flex items-center gap-2 px-4 py-2 text-[12px] font-bold text-[#00a99d] border-2 border-[#00a99d] rounded-full hover:bg-[#f0f7f7] transition-colors"
-                >
-                  <Printer className="w-4 h-4" />
-                  IMPRIMER
-                </button>
-              </>
-            )}
-          </div>
-
-          {/* CV AVEC PADDING POUR LA BANDE FLOTTANTE */}
-          <div className="w-full max-w-[850px] pt-24">
+        <div ref={previewRef} className="hidden lg:flex flex-1 bg-gray-200 overflow-y-auto p-4 md:p-12 justify-center">
+          <div className="w-full max-w-[850px]">
             <PreviewWrapper>
               <Template data={cvData} />
             </PreviewWrapper>
