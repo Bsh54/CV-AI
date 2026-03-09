@@ -1,12 +1,11 @@
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import type { CVData } from "@/types";
 import Navbar from "@/components/navbar";
 import { cvModels } from "@/data/cvModels";
 import EditorPanel from "@/components/cv/EditorPanel";
 import PreviewWrapper from "@/components/cv/PreviewWrapper";
 import { getDemoData, setDemoData } from "@/lib/store";
-import { Download, Printer, Loader2 } from "lucide-react";
 // @ts-ignore
 import html2pdf from "html2pdf.js";
 
