@@ -256,7 +256,7 @@ export default function EditorPanel({ data, onChange }: EditorPanelProps) {
 
         {/* 2. EXPÉRIENCES */}
         <AccordionItem value="experiences">
-          <AccordionTrigger className="font-bold">2. Expériences Pro</AccordionTrigger>
+          <AccordionTrigger className="font-bold text-lg py-4 px-3 hover:bg-gray-100 rounded transition-colors">2. Expériences Pro</AccordionTrigger>
           <AccordionContent className="space-y-4 pt-2">
             {data.experiences.map((exp, i) => (
               <div key={i} className="border p-4 rounded-lg bg-gray-50 space-y-3 relative group">
@@ -275,8 +275,8 @@ export default function EditorPanel({ data, onChange }: EditorPanelProps) {
 
         {/* 3. AUTRES (Compétences, Formation, Langues...) */}
         <AccordionItem value="others">
-          <AccordionTrigger className={`font-bold ${showHint ? "hint-pulse" : ""}`} style={{ color: showHint ? "#00a99d" : "inherit" }}>
-            3. Autres rubriques {showHint && <span className="ml-2 text-xs font-normal">👆 Cliquez ici</span>}
+          <AccordionTrigger className={`font-bold text-lg py-4 px-3 hover:bg-gray-100 rounded transition-colors ${showHint ? "hint-pulse" : ""}`} style={{ color: showHint ? "#00a99d" : "inherit" }}>
+            3. Autres rubriques {showHint && <span className="ml-2 text-sm font-normal">👆 Cliquez ici</span>}
           </AccordionTrigger>
           <AccordionContent className="space-y-6 pt-2">
              {/* FORMATION */}
