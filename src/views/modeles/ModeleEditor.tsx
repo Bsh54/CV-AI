@@ -171,13 +171,17 @@ export default function ModeleEditor() {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col text-black">
       <Navbar />
-      <main className="flex-1 pt-20 flex flex-col lg:flex-row">
-        <div className="w-full lg:w-[450px] bg-white border-r shadow-lg overflow-y-auto p-6 scrollbar-hide">
+      <main className="flex-1 pt-20 flex flex-col lg:flex-row h-[calc(100vh-80px)]">
+        {/* Panneau d'édition avec scroll */}
+        <div className="w-full lg:w-[450px] bg-white border-r shadow-lg overflow-y-auto p-6">
+          <div className="mb-8 text-center border-b pb-4">
+            <h1 className="text-2xl font-black text-gray-800 uppercase leading-none mb-1">Votre CV</h1>
+          </div>
           <EditorPanel data={cvData} onChange={setCvData} />
         </div>
 
-        {/* Prévisualisation Desktop */}
-        <div className="hidden lg:flex flex-1 bg-gray-200 overflow-y-auto p-4 md:p-12 justify-center">
+        {/* Prévisualisation Desktop FIXE */}
+        <div className="hidden lg:flex flex-1 bg-gray-200 p-4 md:p-12 justify-center overflow-hidden">
           <div className="w-full max-w-[850px]">
             <PreviewWrapper>
               <Template data={cvData} />
