@@ -9,7 +9,7 @@ import {
 import { Trash2, Sparkles, Download, Printer, Loader2, ImageIcon, X } from "lucide-react";
 import type { CVData } from "@/types";
 import { useNavigate } from "react-router-dom";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 // @ts-ignore
 import html2pdf from "html2pdf.js";
 import { toast } from "react-toastify";
@@ -22,7 +22,13 @@ interface EditorPanelProps {
 export default function EditorPanel({ data, onChange }: EditorPanelProps) {
   const navigate = useNavigate();
   const [isExporting, setIsExporting] = useState(false);
+  const [showHint, setShowHint] = useState(true);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowHint(false), 4000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleChange = (field: keyof CVData, value: any) => {
     onChange({ ...data, [field]: value });
@@ -155,7 +161,21 @@ export default function EditorPanel({ data, onChange }: EditorPanelProps) {
       <div className="mb-8 text-center border-b pb-4">
         <h1 className="text-2xl font-black text-gray-800 uppercase leading-none mb-1">Votre CV</h1>
       </div>
-      <Accordion type="multiple" defaultValue={["infos", "experiences", "others"]} className="w-full">
+
+      {/* Animation de guide pour les rubriques fermées */}
+      {showHint && (
+        <style>{`
+          @keyframes pulse-hint {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+          }
+          .hint-pulse {
+            animation: pulse-hint 1.5s ease-in-out infinite;
+          }
+        `}</style>
+      )}
+
+      <Accordion type="multiple" defaultValue={["infos", "experiences"]} className="w-full">
 
         {/* 1. INFOS & PHOTO */}
         <AccordionItem value="infos">
@@ -223,7 +243,9 @@ export default function EditorPanel({ data, onChange }: EditorPanelProps) {
 
         {/* 3. AUTRES (Compétences, Formation, Langues...) */}
         <AccordionItem value="others">
-          <AccordionTrigger className="font-bold text-gray-400">3. Autres rubriques</AccordionTrigger>
+          <AccordionTrigger className={`font-bold ${showHint ? "hint-pulse" : ""}`} style={{ color: showHint ? "#00a99d" : "inherit" }}>
+            3. Autres rubriques {showHint && <span className="ml-2 text-xs font-normal">👆 Cliquez ici</span>}
+          </AccordionTrigger>
           <AccordionContent className="space-y-6 pt-2">
              {/* FORMATION */}
              <div className="space-y-3">
