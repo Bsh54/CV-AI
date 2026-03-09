@@ -8,8 +8,8 @@ import { defineConfig } from "vite"
 export default defineConfig({
   plugins: [react(), tailwindcss()],
    server: {
-    strictPort: true,
-    host: true,     
+    strictPort: false,
+    host: true,
     port: 3000
   },
   resolve: {
